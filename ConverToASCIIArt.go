@@ -2,7 +2,7 @@ package asciiArt
 
 import (
 	// "strings"
-	// "fmt"
+	"fmt"
 )
 
 func ConvertToASCIIArt(input string) []int {
@@ -24,13 +24,15 @@ func ConvertToASCIIArt(input string) []int {
 	// for _, line := range lines {
 		// Convert the characters in the line to ASCII art
 		for i := 0; i < len(input); i++ {
+			fmt.Println(i)
 			char := int(rune(input[i]))
 			// fmt.Println(char)
 			if input[i] == '\\' && i < len(input) {
 				if input[i+1] == 'n' {
-					char = 10
+					char = 130
 					word = append(word, char)
 					i = i + 1
+					fmt.Println(i)
 				} else {
 					word = append(word, char)
 				}
