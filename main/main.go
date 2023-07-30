@@ -103,7 +103,10 @@ func main() {
 		}
 		fileload := asciiArt.ConvertToASCIIArt(input)
 		fileload1 := asciiArt.PrintLines(fileload,fileLines)
-		fmt.Println(fileload1)
+		// fmt.Println("\n \n")
+		for i := 0; i < len(fileload1); i++ {
+			fmt.Printf(fileload1[i] + "\n")
+		}	
 		// fmt.Println(fileLines[11])
 	}
 }
