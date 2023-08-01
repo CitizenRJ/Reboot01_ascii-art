@@ -2,7 +2,7 @@ package asciiArt
 
 import (
 	// "strings"
-	"fmt"
+	// "fmt"
 )
 
 func ConvertToASCIIArt(input string) []int {
@@ -20,37 +20,37 @@ func ConvertToASCIIArt(input string) []int {
 	// Split the input string into lines
 	// lines := strings.Split(input, "\n")
 	// Convert each line to ASCII art
-	var word [] int
+	var word []int
 	// for _, line := range lines {
-		// Convert the characters in the line to ASCII art
-		for i := 0; i < len(input); i++ {
-			fmt.Println(i)
-			char := int(rune(input[i]))
-			// fmt.Println(char)
-			if input[i] == '\\' && i < len(input) {
-				if input[i+1] == 'n' {
-					char = 130
-					word = append(word, char)
-					i = i + 1
-					fmt.Println(i)
-				} else {
-					word = append(word, char)
-				}
+	// Convert the characters in the line to ASCII art
+	for i := 0; i < len(input); i++ {
+		// fmt.Println(i)
+		char := int(rune(input[i]))
+		// fmt.Println(char)
+		if input[i] == '\\' && i < len(input) {
+			if input[i+1] == 'n' {
+				char = 127
+				word = append(word, char)
+				i = i + 1
+				// fmt.Println(i)
 			} else {
 				word = append(word, char)
 			}
-			// asciiChar, exists := asciiChars[char]
-			// if exists {
-			// 	output += asciiChar
-			// } else {
-			// 	// Handle unknown characters
-			// 	output += "?"
-			// }
+		} else {
+			word = append(word, char)
 		}
-		// Add a line break after each line
-		// output += "\n"
+		// asciiChar, exists := asciiChars[char]
+		// if exists {
+		// 	output += asciiChar
+		// } else {
+		// 	// Handle unknown characters
+		// 	output += "?"
+		// }
+	}
+	// Add a line break after each line
+	// output += "\n"
 	// }
-// fmt.Println(word)
+	// fmt.Println(word)
 	return word
-	
+
 }

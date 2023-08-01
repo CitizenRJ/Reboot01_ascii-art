@@ -1,11 +1,13 @@
 package main
 
 import (
+	"asciiArt"
 	"bufio"
 	"fmt"
 	"log"
 	"os"
-	"asciiArt"
+	"strings"
+	// "regexp"
 )
 
 func main() {
@@ -95,18 +97,41 @@ func main() {
 			// 	} else {
 			// 		fmt.Fprint(writer, fileLines[i])
 			// 	}
-
 			// }
 			// writer.Flush()
 			// fmt.Println("Wrote to file: " + output + ".")
 			// fmt.Println(fileLines)
 		}
-		fileload := asciiArt.ConvertToASCIIArt(input)
-		fileload1 := asciiArt.PrintLines(fileload,fileLines)
+		var fileload []int
+		result := asciiArt.ForNewLine(input)
+		fmt.Println(result)
+		words := strings.Split(result, " \\n ")
+		// fmt.Println(len(words))
+		// for _, word := range words {
+			for j :=0 ; j < len(words) ; j++ {
+			fileload = asciiArt.ConvertToASCIIArt(words[j])
+			fileload1 := asciiArt.PrintLines(fileload, fileLines)
+			// fmt.Println("\n \n")
+			for i := 0; i < len(fileload1); i++ {
+				// for j := 0; j < len(fileload1[i]); j++ {
+					fmt.Printf(strings.Join(fileload1[i], "") + "\n")
+				// }
+				// fmt.Println()
+			}
+			// fmt.Println()
+		}
+		// fileload1 := asciiArt.PrintLines(fileload, fileLines)
 		// fmt.Println("\n \n")
-		for i := 0; i < len(fileload1); i++ {
-			fmt.Printf(fileload1[i] + "\n")
-		}	
+		// for i := 0; i < len(fileload1[0]); i++ {
+		// 	for j := 0; j < len(fileload1); j++ {
+		// 		fmt.Printf(strings.Join(fileload1[j], "") + "\n")
+		// 	}
+		// 	fmt.Println()
+		// }
+		// for i := 0; i < len(fileload1); i++ {
+		// 	// fmt.Printf(fileload1[i] + "$\n")
+		// 	fmt.Printf(strings.Join(fileload1[i], "") + "$\n")
+		// }
 		// fmt.Println(fileLines[11])
 	}
 }
