@@ -29,14 +29,12 @@ func main() {
 		input := os.Args[1]
 		if len(Str) == 1 {
 			if len(Str) == 1 {
-				// input := os.Args[1]
 				file, err := os.Open("standard.txt")
 				if err != nil {
 					log.Fatal(err)
 				}
 				fileScanner := bufio.NewScanner(file)
 				fileScanner.Split(bufio.ScanLines)
-				// var fileLines []string
 				for fileScanner.Scan() {
 					fileLines = append(fileLines, fileScanner.Text())
 				}
@@ -48,40 +46,34 @@ func main() {
 			standard := "standard"
 			thinkertoy := "thinkertoy"
 			if fileType == standard {
-				// input := os.Args[1]
 				file, err := os.Open("standard.txt")
 				if err != nil {
 					log.Fatal(err)
 				}
 				fileScanner := bufio.NewScanner(file)
 				fileScanner.Split(bufio.ScanLines)
-				// var fileLines []string
 				for fileScanner.Scan() {
 					fileLines = append(fileLines, fileScanner.Text())
 				}
 				file.Close()
 			} else if fileType == shadow {
-				// input := os.Args[1]
 				file, err := os.Open("shadow.txt")
 				if err != nil {
 					log.Fatal(err)
 				}
 				fileScanner := bufio.NewScanner(file)
 				fileScanner.Split(bufio.ScanLines)
-				// var fileLines []string
 				for fileScanner.Scan() {
 					fileLines = append(fileLines, fileScanner.Text())
 				}
 				file.Close()
 			} else if fileType == thinkertoy {
-				// input := os.Args[1]
 				file, err := os.Open("thinkertoy.txt")
 				if err != nil {
 					log.Fatal(err)
 				}
 				fileScanner := bufio.NewScanner(file)
 				fileScanner.Split(bufio.ScanLines)
-				// var fileLines []string
 				for fileScanner.Scan() {
 					fileLines = append(fileLines, fileScanner.Text())
 				}
@@ -90,7 +82,26 @@ func main() {
 				fmt.Println("Error: too many Args lol.")
 				os.Exit(2)
 			}
-			// writer := bufio.NewWriter(file)
+
+		}
+		var fileload []int
+		result := strings.ReplaceAll(input, "\\t", "   ")
+		result = strings.ReplaceAll(result, "\\n", " \\n ")
+		words := strings.Split(result, " \\n ")
+		for j := 0; j < len(words); j++ {
+			if words[j] != "" {
+				fileload = asciiArt.ConvertToASCIIArt(words[j])
+				fileload1 := asciiArt.PrintLines(fileload, fileLines)
+				for i := 0; i < len(fileload1); i++ {
+					if strings.Join(fileload1[i], "") != "" {
+						fmt.Println(strings.Join(fileload1[i], ""))
+					}
+				}
+			}  else if j < len(words) {
+				fmt.Println()
+			}
+		}
+					// writer := bufio.NewWriter(file)
 			// for i := 0; i < len(fileLines); i++ {
 			// 	if i < len(fileLines)-1 {
 			// 		fmt.Fprintln(writer, fileLines[i])
@@ -101,37 +112,5 @@ func main() {
 			// writer.Flush()
 			// fmt.Println("Wrote to file: " + output + ".")
 			// fmt.Println(fileLines)
-		}
-		var fileload []int
-		result := asciiArt.ForNewLine(input)
-		fmt.Println(result)
-		words := strings.Split(result, " \\n ")
-		// fmt.Println(len(words))
-		// for _, word := range words {
-			for j :=0 ; j < len(words) ; j++ {
-			fileload = asciiArt.ConvertToASCIIArt(words[j])
-			fileload1 := asciiArt.PrintLines(fileload, fileLines)
-			// fmt.Println("\n \n")
-			for i := 0; i < len(fileload1); i++ {
-				// for j := 0; j < len(fileload1[i]); j++ {
-					fmt.Printf(strings.Join(fileload1[i], "") + "\n")
-				// }
-				// fmt.Println()
-			}
-			// fmt.Println()
-		}
-		// fileload1 := asciiArt.PrintLines(fileload, fileLines)
-		// fmt.Println("\n \n")
-		// for i := 0; i < len(fileload1[0]); i++ {
-		// 	for j := 0; j < len(fileload1); j++ {
-		// 		fmt.Printf(strings.Join(fileload1[j], "") + "\n")
-		// 	}
-		// 	fmt.Println()
-		// }
-		// for i := 0; i < len(fileload1); i++ {
-		// 	// fmt.Printf(fileload1[i] + "$\n")
-		// 	fmt.Printf(strings.Join(fileload1[i], "") + "$\n")
-		// }
-		// fmt.Println(fileLines[11])
 	}
 }
