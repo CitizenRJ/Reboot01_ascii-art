@@ -7,23 +7,18 @@ import (
 	"log"
 	"os"
 	"strings"
-	// "regexp"
 )
 
 func main() {
 	Str := os.Args[1:]
-	if len(Str) > 2 || len(Str) < 1 {
+	if len(Str) > 1 || len(Str) < 1 {
 		if len(Str) == 0 {
 			fmt.Println("Error: no arguments :).")
 			os.Exit(0)
-		} else if len(Str) > 2 {
+		} else if len(Str) > 1 {
 			fmt.Println("Error: so many Args.")
 			os.Exit(1)
 		}
-		// else {
-		// 	fmt.Println("Error: mising output file name.")
-		// 	os.Exit(2)
-		// }
 	} else {
 		var fileLines []string
 		input := os.Args[1]
@@ -40,49 +35,6 @@ func main() {
 				}
 				file.Close()
 			}
-		} else {
-			fileType := os.Args[2]
-			shadow := "shadow"
-			standard := "standard"
-			thinkertoy := "thinkertoy"
-			if fileType == standard {
-				file, err := os.Open("standard.txt")
-				if err != nil {
-					log.Fatal(err)
-				}
-				fileScanner := bufio.NewScanner(file)
-				fileScanner.Split(bufio.ScanLines)
-				for fileScanner.Scan() {
-					fileLines = append(fileLines, fileScanner.Text())
-				}
-				file.Close()
-			} else if fileType == shadow {
-				file, err := os.Open("shadow.txt")
-				if err != nil {
-					log.Fatal(err)
-				}
-				fileScanner := bufio.NewScanner(file)
-				fileScanner.Split(bufio.ScanLines)
-				for fileScanner.Scan() {
-					fileLines = append(fileLines, fileScanner.Text())
-				}
-				file.Close()
-			} else if fileType == thinkertoy {
-				file, err := os.Open("thinkertoy.txt")
-				if err != nil {
-					log.Fatal(err)
-				}
-				fileScanner := bufio.NewScanner(file)
-				fileScanner.Split(bufio.ScanLines)
-				for fileScanner.Scan() {
-					fileLines = append(fileLines, fileScanner.Text())
-				}
-				file.Close()
-			} else {
-				fmt.Println("Error: too many Args lol.")
-				os.Exit(2)
-			}
-
 		}
 		var fileload []int
 		result := strings.ReplaceAll(input, "\\t", "   ")
@@ -97,20 +49,9 @@ func main() {
 						fmt.Println(strings.Join(fileload1[i], ""))
 					}
 				}
-			}  else if j < len(words) {
+			}  else if j != 1 && words[j] == "" {
 				fmt.Println()
 			}
 		}
-					// writer := bufio.NewWriter(file)
-			// for i := 0; i < len(fileLines); i++ {
-			// 	if i < len(fileLines)-1 {
-			// 		fmt.Fprintln(writer, fileLines[i])
-			// 	} else {
-			// 		fmt.Fprint(writer, fileLines[i])
-			// 	}
-			// }
-			// writer.Flush()
-			// fmt.Println("Wrote to file: " + output + ".")
-			// fmt.Println(fileLines)
 	}
 }

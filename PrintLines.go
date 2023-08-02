@@ -13,9 +13,9 @@ func PrintLines(input []int, str []string) [][]string {
 		index := input[i]
 		if index == 95 {
 			word[7] = append(word[7], "")
-		} else if index < 0 || index >= len(str) {
-			fmt.Printf("Invalid input code at index %d: %d\n", i, input[i])
-			continue
+		} else if index < 0 || index >= 96 {
+			fmt.Println("-F off, idiot users not allowed.")
+			break
 		}
 		for j := 0; j < 8; j++ {
 			if index == 95 {
