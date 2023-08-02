@@ -14,7 +14,7 @@ func PrintLines(input []int, str []string) [][]string {
 		if index == 95 {
 			word[7] = append(word[7], "")
 		} else if index < 0 || index >= 96 {
-			fmt.Println("Error, unrecognized character")
+			fmt.Println("-Error, unrecognized character")
 			break
 		}
 		for j := 0; j < 8; j++ {
